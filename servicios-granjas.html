@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Asesoría a Granjas y Zoocriaderos | NUCLEOVET</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg nucl sticky-top shadow-sm">
+    <div class="container-fluid px-3">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="/index.html#inicio">
+        <img src="/recursos/NUCLEOVET.jpg" alt="NUCLEOVET" height="70"/>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="nav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="/index.html#servicios">Servicios</a></li>
+          <li class="nav-item"><a class="nav-link" href="/index.html#citas">Agenda</a></li>
+          <li class="nav-item"><a class="nav-link" href="/index.html#contacto">Contacto</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main class="py-5">
+    <div class="container">
+      <div class="d-flex align-items-center gap-2 mb-2">
+        <i class="bi bi-house-heart" style="font-size:2rem;color:var(--brand-end)"></i>
+        <h1 class="h3 mb-0">Asesoría a Granjas y Zoocriaderos</h1>
+      </div>
+      <p class="text-muted mb-4">
+        Acompañamiento técnico–veterinario para granjas, unidades productivas y zoocriaderos:
+        planes sanitarios, bioseguridad, manejo, nutrición y mejoras de productividad. Selecciona
+        los servicios y presiona <strong>Solicitar servicio</strong>.
+      </p>
+
+      <div class="row g-4">
+        <div class="col-lg-8">
+          <input id="searchServices" class="form-control mb-3" placeholder="Buscar servicio..."/>
+          <div class="row g-3" id="servicesGrid"></div>
+          <div class="text-end mt-3">
+            <button class="btn btn-green" id="openRequest">Solicitar servicio (<span id="svc-count">0</span>)</button>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="p-3 bg-white rounded shadow-sm">
+            <h6 class="mb-3">Seleccionados</h6>
+            <ul id="svc-items" class="list-group mb-3"></ul>
+            <div class="d-flex justify-content-between">
+              <strong>Total:</strong><strong id="svc-total">C$0.00</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Modal Solicitud -->
+  <div class="modal fade" id="solicitudModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <form id="formSolicitudServicio" name="solicitud-servicio" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="solicitud-servicio" />
+          <input type="hidden" id="pedidoServiciosJSON" name="pedido" />
+          <p class="d-none"><label>Don’t fill this out: <input name="bot-field" /></label></p>
+
+          <div class="modal-header">
+            <h5 class="modal-title"><i class="bi bi-calendar-check me-2"></i>Reservar servicios</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+
+          <div class="modal-body">
+            <div class="row g-3">
+              <div class="col-md-6"><label class="form-label">Nombre</label><input class="form-control" name="nombre" required></div>
+              <div class="col-md-6"><label class="form-label">Correo</label><input type="email" class="form-control" name="correo" required></div>
+              <div class="col-md-6"><label class="form-label">WhatsApp</label><input class="form-control" name="whatsapp" placeholder="+505..." required></div>
+              <div class="col-md-6"><label class="form-label">Sucursal</label>
+                <select class="form-select" name="sucursal" required>
+                  <option value="" disabled selected>Selecciona...</option>
+                  <option>Managua</option><option>Estelí</option>
+                </select>
+              </div>
+              <div class="col-md-6"><label class="form-label">Fecha</label><input type="date" class="form-control" name="fecha" required></div>
+              <div class="col-md-6"><label class="form-label">Hora</label><input type="time" class="form-control" name="hora"></div>
+              <div class="col-12"><label class="form-label">Notas</label><textarea class="form-control" name="notas" rows="3" placeholder="Especie, cantidad de animales, necesidades..."></textarea></div>
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button class="btn btn-outline-secondary" type="button" data-bs-dismiss="modal">Cancelar</button>
+            <button class="btn btn-green" type="submit">Reservar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <footer class="py-4 border-top">
+    <div class="container d-flex justify-content-between align-items-center">
+      <p class="mb-0 small">© <span id="year"></span> NUCLEOVET</p>
+    </div>
+  </footer>
+
+  <!-- Inyecta los servicios de esta categoría -->
+  <script>
+    window.CAT_TITLE = "granjas";
+    window.SERVICES = [
+      {id:401, name:"Visita diagnóstica (evaluación integral)", price:20},
+      {id:402, name:"Diseño de plan sanitario y calendario vacunal", price:18},
+      {id:403, name:"Programa de bioseguridad y control de brotes", price:22},
+      {id:404, name:"Asesoría nutricional y conversión alimenticia", price:16},
+      {id:405, name:"Capacitación de personal (2 h en sitio)", price:25},
+      {id:406, name:"Montaje de registros productivos y seguimiento", price:15}
+    ];
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/services.js"></script>
+</body>
+</html>

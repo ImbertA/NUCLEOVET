@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Productos | NUCLEOVET</title>
+  <link rel="icon" type="image/png" href="/recursos/iconn.png">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg nucl sticky-top shadow-sm">
+    <div class="container-fluid px-3">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="/index.html#inicio">
+        <img src="/recursos/NUCLEOVET.jpg" alt="NUCLEOVET" height="70"/>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav" aria-controls="nav" aria-expanded="false" aria-label="Alternar navegación">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="nav">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="/index.html#acerca">Acerca</a></li>
+          <li class="nav-item"><a class="nav-link" href="/index.html#servicios">Servicios</a></li>
+          <li class="nav-item"><a class="nav-link" href="/index.html#educacion">Educación Continua</a></li>
+          <li class="nav-item"><a class="nav-link" href="/index.html#citas">Agenda cita</a></li>
+          <li class="nav-item"><a class="nav-link" href="/index.html#contacto">Contacto</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main class="py-5">
+    <div class="container">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h1 class="h3 mb-0">Catálogo de productos</h1>
+        <div><input id="search" class="form-control" placeholder="Buscar producto..."/></div>
+      </div>
+      <div class="row g-4" id="productGrid"></div>
+
+      <!-- Botón Ver carrito al final -->
+      <div class="mt-4 text-end">
+        <button class="btn btn-green" type="button" data-bs-toggle="offcanvas" data-bs-target="#carrito" aria-controls="carrito">
+          <i class="bi bi-bag"></i> Ver carrito (<span id="cart-count">0</span>)
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Offcanvas Carrito -->
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="carrito">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title">Carrito</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
+    </div>
+    <div class="offcanvas-body">
+      <ul id="cart-items" class="list-group mb-3"></ul>
+      <div class="d-flex justify-content-between"><strong>Total:</strong><strong id="cart-total">$0.00</strong></div>
+      <hr>
+      <button class="btn btn-green w-100" id="checkoutBtn">Comprar</button>
+      <p class="text-muted small mt-2">(Demo: este botón abre el formulario de compra; no hay cobro en línea.)</p>
+    </div>
+  </div>
+
+  <!-- Modal Compra (Netlify Forms) -->
+  <div class="modal fade" id="compraModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <form id="formCompra" name="compra" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="compra" />
+          <p class="d-none"><label>Don’t fill this out: <input name="bot-field" /></label></p>
+          <div class="modal-header">
+            <h5 class="modal-title"><i class="bi bi-credit-card me-2"></i>Datos para la compra</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+          </div>
+          <div class="modal-body">
+            <div class="row g-3">
+              <div class="col-md-6"><label class="form-label">Nombre</label><input class="form-control" name="nombre" required></div>
+              <div class="col-md-6"><label class="form-label">Correo</label><input type="email" class="form-control" name="correo" required></div>
+              <div class="col-md-6"><label class="form-label">WhatsApp</label><input class="form-control" name="whatsapp" placeholder="+505..." required></div>
+              <div class="col-md-6"><label class="form-label">Fecha de entrega</label><input type="date" class="form-control" name="fecha" required></div>
+              <div class="col-12"><label class="form-label">Dirección de entrega</label><textarea class="form-control" name="direccion" rows="3" required></textarea></div>
+              <div class="col-12">
+                <label class="form-label">Forma de pago</label>
+                <select class="form-select" name="pago" required>
+                  <option value="" disabled selected>Selecciona...</option>
+                  <option>Efectivo</option>
+                  <option>Transferencia bancaria</option>
+                </select>
+                <div class="form-text">Bancos asociados: BAC, BDF (ejemplo).</div>
+              </div>
+              <input type="hidden" name="carrito" id="pedidoJSON" />
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-green">Enviar pedido</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <footer class="py-4 border-top">
+    <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
+      <p class="mb-0 small">© <span id="year"></span> NUCLEOVET. Todos los derechos reservados.</p>
+      <div class="d-flex gap-3">
+        <a href="https://facebook.com/" class="text-muted small"><i class="bi bi-facebook me-1"></i>Facebook</a>
+        <a href="https://instagram.com/" class="text-muted small"><i class="bi bi-instagram me-1"></i>Instagram</a>
+        <a href="https://wa.me/" class="text-muted small"><i class="bi bi-whatsapp me-1"></i>WhatsApp</a>
+        <a href="https://tiktok.com/@" class="text-muted small"><i class="bi bi-tiktok me-1"></i>TikTok</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/store.js"></script>
+</body>
+</html>

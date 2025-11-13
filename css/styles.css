@@ -1,0 +1,189 @@
+:root{
+  --brand-start:#A0078C; /* magenta */
+  --brand-end:#FF2E63;   /* rosa intenso */
+  --brand-dark:#7a066a;
+  --bg-soft:#f8f9fa;
+}
+
+html{scroll-behavior:smooth}
+body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+
+/* Utilidades */
+.text-brand{color:var(--brand-start)!important}
+.btn-outline-brand{color:var(--brand-start);border-color:var(--brand-start)}
+.btn-outline-brand:hover{background:var(--brand-start);color:#fff}
+
+/* Botones verdes solicitados */
+.btn-green{background:#198754;border-color:#198754;color:#fff}
+.btn-green:hover{background:#157347;border-color:#146c43;color:#fff}
+
+/* Navbar blanco con texto magenta y logo a la izquierda */
+.navbar.nucl{background:#fff}
+.navbar.nucl .navbar-brand{color:var(--brand-start)!important}
+.navbar.nucl .nav-link{color:var(--brand-start)!important;font-weight:700;font-size:1.08rem}
+.navbar.nucl .nav-link.active,
+.navbar.nucl .nav-link:hover{opacity:.85}
+
+/* Hero (puedes cambiar la imagen por otra con perro/gato/exóticos) */
+.hero{
+  background: linear-gradient(rgba(0,0,0,.35), rgba(0,0,0,.35)),
+    url("https://images.unsplash.com/photo-1568640347023-a616a30bc3bd?q=80&w=1200&auto=format&fit=crop");
+  background-size:cover; background-position:center; color:#fff;
+  min-height:60vh; display:flex; align-items:center;
+}
+
+.section-title{position:relative; padding-bottom:.5rem; margin-bottom:1.5rem}
+.section-title::after{content:""; position:absolute; left:0; bottom:0; width:90px; height:3px; background:var(--brand-end)}
+
+.service-card i{font-size:2rem; color:var(--brand-end)}
+.product-card img{height:180px; object-fit:cover}
+.badge-exoticos{background:var(--brand-end)}
+footer a{text-decoration:none}
+
+/* Bloques con imagen lateral para Acerca/Misión/Visión */
+.block-side img{height:260px; object-fit:cover; width:100%}
+
+/* Educación Continua — lista horizontal */
+.edu-scroller{
+  display:flex; gap:1rem; overflow-x:auto; padding-bottom:.5rem;
+  scroll-snap-type:x mandatory;
+}
+.edu-scroller::-webkit-scrollbar{height:8px}
+.edu-scroller::-webkit-scrollbar-thumb{background:#ddd;border-radius:4px}
+.edu-card{
+  min-width:320px; max-width:320px; background:#fff; border:1px solid #e9ecef;
+  border-radius:.5rem; overflow:hidden; scroll-snap-align:start;
+  box-shadow:0 .125rem .25rem rgba(0,0,0,.075);
+}
+.edu-card img{height:160px; width:100%; object-fit:cover}
+
+/* Contenedor adaptable de imagen (para sección Visión y similares) */
+.imgbox-ar {
+  width: 100%;
+  aspect-ratio: 4 / 3;     /* ajusta la relación según el espacio que tengas */
+  overflow: hidden;
+  background: #fff;
+  border-radius: .5rem;
+  position: relative;
+}
+
+.imgbox-ar > img {
+  position: absolute;
+  inset: 0;                /* ocupa todo el espacio */
+  width: 100%;
+  height: 100%;
+  object-fit: contain;     /* muestra toda la imagen, sin recortar */
+  object-position: center; /* centra siempre */
+  background-color: #fff;  /* relleno blanco si sobran bordes */
+}
+/* Deja margen al hacer scroll a anclas */
+#acerca, #mision, #vision, #equipo, #servicios, #educacion, #citas, #contacto {
+  scroll-margin-top: 90px;
+}
+
+/* Justificar texto en todos los párrafos principales */
+#acerca p,
+#mision p,
+#vision p{
+  text-align: justify;
+}
+
+/* Justificar párrafos de la sección */
+#acerca p { text-align: justify; }
+
+/* Reducir espacio entre título y primer párrafo */
+#acerca .section-title { margin-bottom: 1.5rem !important; }
+#mision .section-title { margin-bottom: 1.5rem !important; }
+#vision .section-title { margin-bottom: 1.5rem !important; }
+
+/* Aumenta el espacio entre el hero y la sección ¿Quiénes Somos? */
+section#acerca {
+  padding-top: 7rem !important;  /* empuja la sección hacia abajo */
+  margin-top: 0 !important;      /* por si Bootstrap agrega margen */
+}
+
+/* Modal de educación continua */
+#eduImgModal .modal-content {
+  background: transparent; /* sin fondo blanco */
+}
+#eduImgModal img {
+  object-fit: contain;
+  max-height: 80vh;   /* no supera el 80% de la altura de la pantalla */
+  width: 100%;
+}
+
+/* Sucursales: separadores sutiles */
+#sucursales .ratio { border: 1px solid #eef1f4; }
+
+/* Icono diente si el set no lo tiene (bi-tooth fallback) */
+.bi-tooth::before { content: "\f5e5"; } /* solo decorativo si tu pack lo soporta */
+
+.service-card svg { vertical-align: middle; }
+
+/* ======= Footer: iconos arriba del copyright en móvil ======= */
+@media (max-width: 767.98px) {
+  footer .container {
+    display: flex;
+    flex-direction: column-reverse; /* invierte el orden */
+    align-items: center;
+    text-align: center;
+    gap: 0.5rem;
+  }
+
+
+  /* ================================================== */
+/* ====== Logo Wall (Asociados y Colaboraciones) ====== */
+/* ================================================== */
+
+/* 1. Estilos para la "cajita" que contiene cada logo */
+.logo-wall .logo-tile {
+  background: #fff;
+  border: 1px solid #eef1f4;
+  border-radius: .50rem;
+  box-shadow: 0 .25rem .5rem rgba(0,0,0,.04);
+
+  /* --- CAMBIO CLAVE PARA RESPONSIVE --- */
+  /* En lugar de una altura fija, le damos una proporción. 
+     Se ajustará automáticamente al ancho que le den las clases col-*. */
+  aspect-ratio: 4 / 3; /* Puedes probar 3 / 2 o 1 / 1 si prefieres otra forma */
+  
+  /* Esto centra la imagen perfectamente dentro de la caja */
+  display: grid;
+  place-items: center;
+  padding: 1rem; /* Un buen espacio interno para que el logo "respire" */
+  
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+
+.logo-wall .logo-tile:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 .5rem 1rem rgba(0,0,0,.08);
+}
+
+
+/* 2. Estilos para la imagen (el logo en sí) */
+.logo-wall .logo-tile img {
+  display: block;
+
+  /* La imagen se ajustará al 100% del espacio disponible en su caja */
+  max-width: 100%;
+  max-height: 100%;
+  
+  width: auto;  /* El navegador calcula el ancho para mantener la proporción */
+  height: auto; /* El navegador calcula el alto */
+  
+  /* Propiedades para que la imagen siempre se vea bien */
+  object-fit: contain;      /* Magia: asegura que la imagen quepa sin deformarse */
+  mix-blend-mode: multiply; /* Ayuda a que los fondos blancos se integren mejor */
+  /*filter: saturate(0); */      /* Los logos inician en escala de grises */
+  /*opacity: 0.8; */
+  transition: filter .2s ease, opacity .2s ease;
+}
+
+/* 3. Efecto al pasar el mouse sobre la caja */
+.logo-wall .logo-tile:hover img {
+  filter: none; /* La imagen recupera su color */
+  opacity: 1;
+}
+
+}
