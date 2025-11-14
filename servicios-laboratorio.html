@@ -25,25 +25,52 @@
     </div>
   </nav>
 
-  <main class="py-5">
+<main class="py-5">
     <div class="container">
-     <div class="d-flex align-items-center gap-2 mb-2">
-        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="me-2" viewBox="0 0 16 16" style="color: var(--brand-end);">
+      
+      <div class="row mb-5">
+        <div class="col-lg-12 mb-4">
+           <div class="d-flex align-items-center gap-2 mb-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="me-2" viewBox="0 0 16 16" style="color: var(--brand-end);">
                 <path d="M6.5 2V1h3v1h-.5v4.086l3.975 6.626A1.5 1.5 0 0 1 11.7 15H4.3a1.5 1.5 0 0 1-1.275-2.288L7 6.086V2h-.5zM5 2h6v1H5V2zM7 7 3.6 12.5a.5.5 0 0 0 .425.75h7.95a.5.5 0 0 0 .425-.75L9 7H7z"/>
               </svg>
-      <h1 class="h3 mb-0">Laboratorio Clínico Veterinario</h1>
+              <h1 class="h3 mb-0">Laboratorio Clínico Veterinario</h1>
+           </div>
+           <p class="text-muted" style="text-align: justify;">
+             En NÚCLEOVET combinamos tecnología de vanguardia con la experiencia de nuestros especialistas para brindarte diagnósticos precisos y oportunos. 
+             Sabemos que la salud de tu mascota no puede esperar, por eso garantizamos resultados confiables en Microbiología, Hematología y Pruebas Especiales. 
+             Tu confianza y su bienestar son nuestra prioridad🐶🐈🐾
+           </p>
+        </div>
+
+                <div class="col-md-6">
+          <div class="ratio ratio-16x9 border rounded overflow-hidden shadow-sm">
+            <img src="/recursos/hematologia.png" alt="Descripción de la foto 1" style="object-fit: cover;">
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="ratio ratio-16x9 border rounded overflow-hidden shadow-sm">
+            <img src="/recursos/coproparasitos.png" alt="Descripción de la foto 2" style="object-fit: cover;">
+          </div>
+        </div>
       </div>
+
       <p class="text-muted mb-4">
-        Selecciona el exámen, análisis o pruebas que necesites y presiona <strong>Solicitar servicio</strong>.
+        Selecciona el examen, análisis o pruebas que necesites y presiona <strong>Solicitar servicio</strong>🐕
       </p>
+      
       <div class="row g-4">
         <div class="col-lg-8">
           <input id="searchServices" class="form-control mb-3" placeholder="Buscar prueba..."/>
+          
           <div class="row g-3" id="servicesGrid"></div>
+
           <div class="text-end mt-3">
             <button class="btn btn-green" id="openRequest">Solicitar servicio (<span id="svc-count">0</span>)</button>
           </div>
         </div>
+        
         <div class="col-lg-4">
           <div class="p-3 bg-white rounded shadow-sm">
             <h6 class="mb-3">Seleccionados</h6>
@@ -87,80 +114,237 @@
     </div></div>
   </div>
 
-  <footer class="py-4 border-top"><div class="container d-flex justify-content-between align-items-center"><p class="mb-0 small">© <span id="year"></span> NUCLEOVET</p></div></footer>
+  <footer class="py-4 border-top"><div class="container d-flex justify-content-between align-items-center"><p class="mb-0 small">© <span id="year"></span> NUCLEOVET - Todos los derechos reservados</p></div></footer>
 
-  <script>window.CAT_TITLE="laboratorio"; window.SERVICES = [
-    {id:201, name:"Hemograma completo (CBC)", price:12},
-    {id:202, name:"Frotis sanguíneo", price:8},
-    {id:203, name:"Perfil bioquímico básico", price:25},
-    {id:204, name:"Perfil renal (urea/creatinina)", price:14},
-    {id:205, name:"Perfil hepático (ALT/AST/ALP)", price:16},
-    {id:206, name:"Glucosa", price:6},
-    {id:207, name:"Proteínas totales/albumina", price:7},
-    {id:208, name:"Colesterol", price:7},
-    {id:209, name:"Triglicéridos", price:7},
-    {id:210, name:"Calcio/Fósforo", price:9},
-    {id:211, name:"Electrolitos (Na/K/Cl)", price:18},
-    {id:212, name:"T4 total", price:22},
-    {id:213, name:"Cortisol basal", price:24},
-    {id:214, name:"Prueba de estimulación ACTH", price:40},
-    {id:215, name:"Prueba de supresión con dexametasona", price:38},
-    {id:216, name:"Ácidos biliares", price:20},
-    {id:217, name:"Amilasa/Lipasa", price:14},
-    {id:218, name:"Fructosamina", price:22},
-    {id:219, name:"Lactato", price:10},
-    {id:220, name:"PCR (proteína C reactiva)", price:18},
-    {id:221, name:"Urianálisis completo", price:10},
-    {id:222, name:"Sedimento urinario", price:8},
-    {id:223, name:"Relación UPC", price:12},
-    {id:224, name:"Test rápido parvovirus", price:15},
-    {id:225, name:"Test rápido moquillo", price:15},
-    {id:226, name:"Test rápido leucemia felina (FeLV)", price:18},
-    {id:227, name:"Test rápido inmunodeficiencia felina (FIV)", price:18},
-    {id:228, name:"Coprológico directo", price:7},
-    {id:229, name:"Flotación fecal", price:9},
-    {id:230, name:"Citología de piel/oído", price:10},
-    {id:231, name:"Raspado cutáneo", price:9},
-    {id:232, name:"Citología por aspiración", price:14},
-    {id:233, name:"Prueba de microfilarias", price:9},
-    {id:234, name:"Tipificación sanguínea (canina)", price:18},
-    {id:235, name:"Tipificación sanguínea (felina)", price:18},
-    {id:236, name:"Coombs directo", price:22},
-    {id:237, name:"Tiempo de coagulación (PT/aPTT)", price:20},
-    {id:238, name:"Conteo de reticulocitos", price:12},
-    {id:239, name:"Ionograma ampliado", price:22},
-    {id:240, name:"Gasometría", price:26},
-    {id:241, name:"Proteinograma", price:20},
-    {id:242, name:"Citoquímico de LCR", price:24},
-    {id:243, name:"Cultivo bacteriano (muestra estándar)", price:28},
-    {id:244, name:"Antibiograma", price:20},
-    {id:245, name:"Cultivo de hongos", price:22},
-    {id:246, name:"RIFI/ELISA leishmania", price:25},
-    {id:247, name:"RIFI/ELISA ehrlichia/anaplasma", price:25},
-    {id:248, name:"Toxoplasma IgG/IgM", price:26},
-    {id:249, name:"Leptospira MAT/ELISA", price:28},
-    {id:250, name:"Babesia (frotis/serología)", price:20},
-    {id:251, name:"Trypanosoma (frotis)", price:12},
-    {id:252, name:"Dirofilaria (antígeno)", price:18},
-    {id:253, name:"Parásitos gastrointestinales panel", price:18},
-    {id:254, name:"Coccidias (tinción especial)", price:12},
-    {id:255, name:"Giardia (antígeno)", price:16},
-    {id:256, name:"Clostridium perfringens toxina", price:22},
-    {id:257, name:"Campylobacter test", price:22},
-    {id:258, name:"PCR panel respiratorio (muestra derivada)", price:45},
-    {id:259, name:"PCR parvo/corona (muestra derivada)", price:40},
-    {id:260, name:"Serología brucella", price:26},
-    {id:261, name:"Serología anaplasma", price:22},
-    {id:262, name:"Serología leptospira", price:24},
-    {id:263, name:"Serología borrelia", price:24},
-    {id:264, name:"Perfil geriátrico canino", price:30},
-    {id:265, name:"Perfil prequirúrgico", price:26},
-    {id:266, name:"Perfil gato senior", price:28},
-    {id:267, name:"Citología ganglionar", price:18},
-    {id:268, name:"Citología masas cutáneas", price:18},
-    {id:269, name:"Evaluación médula ósea (muestra referida)", price:55},
-    {id:270, name:"Otros (cotización personalizada)", price:0}
-  ];</script>
+<script>
+  window.CAT_TITLE="laboratorio"; 
+  
+  // Lista actualizada con categorías según tu imagen
+  window.SERVICES = [
+        // --- HEMATOLOGÍA ---
+    {id:301, name:"Biometría Hemática Completa", price:460, cat:"Hematología"},
+    {id:302, name:"Hemograma + Hemopatógenos pequeñas especies", price:570, cat:"Hematología"},
+    {id:303, name:"Hemograma + Hemopatógenos Ganado mayor y menor", price:760, cat:"Hematología"},
+    {id:304, name:"Hemograma + Hemopatógenos en Exóticos y No Convencionales", price:270, cat:"Hematología"},
+    {id:305, name:"Hematocritos", price:270, cat:"Hematología"},
+    {id:306, name:"Conteo de Plaquetas", price:270, cat:"Hematología"},
+    {id:307, name:"Conteo de reticulocitos", price:400, cat:"Hematología"},
+    {id:308, name:"Hemograma completo (CBC)", price:450, cat:"Hematología"},
+    {id:309, name:"Frotis sanguíneo", price:300, cat:"Hematología"},
+
+    // --- COPROPARASITOLOGÍA ---
+    {id:310, name:"Examen General de Heces EGH", price:270, cat:"Coproparasitología"},
+    {id:311, name:"Examen General de Heces por Hisopado", price:270, cat:"Coproparasitología"},
+    {id:312, name:"Huevos por Gramo HPG", price:310, cat:"Coproparasitología"},
+    {id:313, name:"Ooquistes por Gramo OPG", price:310, cat:"Coproparasitología"},
+    {id:314, name:"Citología Fecal", price:570, cat:"Coproparasitología"},
+
+
+    // --- MICROBIOLOGÍA ---
+    {id:315, name:"Aislamientos bacterianos", price:1615, cat:"Microbiología"},
+    {id:316, name:"Aislamiento bacterianos + Antibiograma", price:1615, cat:"Microbiología"},
+    {id:317, name:"Aislamiento de hongos", price:1615, cat:"Microbiología"},
+    {id:318, name:"Aislamiento de hongos + Antimicograma", price:1615, cat:"Microbiología"},
+    {id:319, name:"Cultivo de dermatofitos", price:1800, cat:"Microbiología"},
+
+    // --- PRUEBAS ESPECIALES ---
+    {id:320, name:"PCR Ehrlichia Canis", price:1690, cat:"Pruebas Especiales"},
+    {id:321, name:"PCR Anaplasma phagocytophilum", price:1690, cat:"Pruebas Especiales"},
+    
+    // --- IONOGRAMAS ---
+    {id:322, name:"Fósforo inorgánico PHOS", price:760, cat:"Ionogramas"},
+    {id:323, name:"Potasio", price:570, cat:"Ionogramas"},
+    {id:324, name:"Calcio", price:570, cat:"Ionogramas"},
+    {id:325, name:"Fósforo", price:570, cat:"Ionogramas"},
+    {id:326, name:"Magnesio", price:570, cat:"Ionogramas"},
+    {id:327, name:"Cloro", price:570, cat:"Ionogramas"},
+    {id:328, name:"Amoniaco", price:570, cat:"Ionogramas"},
+
+        // --- HISTOPATOLOGÍA ---
+    {id:329, name:"Biopsias Focales", price:1700, cat:"Histopatologías"},
+    {id:330, name:"Biopsias Multifocales", price:2075, cat:"Histopatologías"},
+    {id:331, name:"Estudios de LCR", price:2270, cat:"Histopatologías"},
+
+    // --- IDENTIFICACIÓN DE HEMOPARÁSITOS ---
+    {id:332, name:"Extendido Periférico con sangre total", price:270, cat:"Hemoparásitos"},
+    {id:333, name:"Extendido Buffy-Coat", price:270, cat:"Hemoparásitos"},
+    {id:334, name:"Extendido Punción de Ganglios", price:270, cat:"Hemoparásitos"},
+    {id:335, name:"Knott Test", price:270, cat:"Hemoparásitos"},
+    {id:336, name:"Woo Test", price:270, cat:"Hemoparásitos"},
+
+    // --- INMUNODIAGNÓSTICO ---
+    {id:337, name:"Parvovirus Canino AG", price:960, cat:"Inmunodiagnóstico"},
+    {id:338, name:"Parvo/Corona/Giardia", price:1180, cat:"Inmunodiagnóstico"},
+    {id:339, name:"Distemper Ag", price:960, cat:"Inmunodiagnóstico"},
+    {id:340, name:"CIRD-3", price:1180, cat:"Inmunodiagnóstico"},
+    {id:341, name:"Distemper 3.0 Ab", price:1180, cat:"Inmunodiagnóstico"},
+    {id:342, name:"Ehrlichia Cani Ab", price:1180, cat:"Inmunodiagnóstico"},
+    {id:343, name:"Ehrlichia/Anaplasma Ab", price:1110, cat:"Inmunodiagnóstico"},
+    {id:344, name:"Cani V-4", price:1300, cat:"Inmunodiagnóstico"},
+    {id:345, name:"IgE Total", price:960, cat:"Inmunodiagnóstico"},
+    {id:346, name:"Dirofiliaria Inmitis Ag", price:1300, cat:"Inmunodiagnóstico"},
+    {id:347, name:"FIV Ab / Felv Ag", price:1110, cat:"Inmunodiagnóstico"},
+    {id:348, name:"Toxoplasma IgM", price:1110, cat:"Inmunodiagnóstico"},
+    {id:349, name:"Babesia Ab", price:1480, cat:"Inmunodiagnóstico"},
+
+    // --- INMUNOHEMATOLOGÍA ---
+    {id:350, name:"Tipificación Sanguínea", price:2220, cat:"Inmunohematología"},
+    {id:351, name:"Crossmatch", price:1670, cat:"Inmunohematología"},
+    {id:352, name:"Compatibilidad en Tubos", price:1110, cat:"Inmunohematología"},
+
+        // --- HORMONAS ---
+    {id:353, name:"Progesterona", price:2270, cat:"Hormonas"},
+    {id:354, name:"Cortisol", price:1510, cat:"Hormonas"},
+    {id:355, name:"T3", price:1510, cat:"Hormonas"},
+    {id:356, name:"T4", price:1510, cat:"Hormonas"},
+    {id:357, name:"TSH", price:1510, cat:"Hormonas"},
+    {id:358, name:"Testosterona", price:1510, cat:"Hormonas"},
+    {id:359, name:"Prolactina", price:1510, cat:"Hormonas"},
+
+    // --- BIOQUíMICA SANGUÍNEA ---
+    {id:360, name:"Hierro Sérico", price:570, cat:"Bioquímica Sanguínea"},
+    {id:361, name:"GlicoHemoglobina", price:760, cat:"Bioquímica Sanguínea"},
+    {id:362, name:"Amilasa", price:570, cat:"Bioquímica Sanguínea"},
+    {id:363, name:"Ácido Fólico", price:570, cat:"Bioquímica Sanguínea"},
+    {id:364, name:"Glucosa", price:570, cat:"Bioquímica Sanguínea"},
+    {id:365, name:"Bilirrubina Total", price:570, cat:"Bioquímica Sanguínea"},
+    {id:366, name:"Bilirrubina Fraccionada", price:570, cat:"Bioquímica Sanguínea"},
+    {id:367, name:"Fosfatasa Alcalina", price:570, cat:"Bioquímica Sanguínea"},
+    {id:368, name:"TGP / ALT", price:570, cat:"Bioquímica Sanguínea"},
+    {id:369, name:"TGO / AST", price:570, cat:"Bioquímica Sanguínea"},
+    {id:370, name:"TP", price:570, cat:"Bioquímica Sanguínea"},
+    {id:371, name:"TPT", price:570, cat:"Bioquímica Sanguínea"},
+    {id:372, name:"TC", price:570, cat:"Bioquímica Sanguínea"},
+    {id:373, name:"GGT", price:570, cat:"Bioquímica Sanguínea"},
+    {id:374, name:"Proteína Total", price:570, cat:"Bioquímica Sanguínea"},
+    {id:375, name:"Relación Albumina + Globulina", price:570, cat:"Bioquímica Sanguínea"},
+    {id:376, name:"Albúmina", price:570, cat:"Bioquímica Sanguínea"},
+    {id:377, name:"Proteina C Reactiva", price:570, cat:"Bioquímica Sanguínea"},
+    {id:378, name:"Triglicéridos", price:570, cat:"Bioquímica Sanguínea"},
+    {id:379, name:"Creatinina", price:570, cat:"Bioquímica Sanguínea"},
+    {id:380, name:"Creatinina Quinasa", price:570, cat:"Bioquímica Sanguínea"},
+    {id:381, name:"Urea", price:570, cat:"Bioquímica Sanguínea"},
+    {id:382, name:"Amonio en Plasma", price:760, cat:"Bioquímica Sanguínea"},
+    {id:383, name:"PHBR", price:570, cat:"Bioquímica Sanguínea"},
+    {id:384, name:"Fructosamina", price:1360, cat:"Bioquímica Sanguínea"},
+    {id:385, name:"Colesterol", price:570, cat:"Bioquímica Sanguínea"},
+    {id:386, name:"LAC", price:570, cat:"Bioquímica Sanguínea"},
+    {id:387, name:"LPH", price:570, cat:"Bioquímica Sanguínea"},
+    {id:388, name:"LIPA", price:570, cat:"Bioquímica Sanguínea"},
+    {id:389, name:"URIC", price:570, cat:"Bioquímica Sanguínea"},
+    {id:390, name:"Hemoglobina Glicosilada", price:950, cat:"Bioquímica Sanguínea"},
+
+    
+    // --- UROANÁLISIS ---
+    {id:391, name:"Exámen General de Orina", price:270, cat:"Uroanálisis"},
+    {id:392, name:"Exámen Químico", price:190, cat:"Uroanálisis"},
+    {id:393, name:"Sondaje", price:310, cat:"Uroanálisis"},
+    {id:394, name:"Cistocentesis", price:190, cat:"Uroanálisis"},
+
+        // --- ESPERMATOGRAMA ---
+    {id:395, name:"Espermatograma Equino", price:1140, cat:"Espermatograma"},
+    {id:396, name:"Espermatograma Bovino", price:950, cat:"Espermatograma"},
+    {id:397, name:"Espermatograma Canino", price:950, cat:"Espermatograma"},
+
+        // --- CITOLOGÍAS ---
+    {id:398, name:"Citología Ótica", price:570, cat:"Citologías"},
+    {id:399, name:"Citología Conjuntival", price:570, cat:"Citologías"},
+    {id:400, name:"Citología Cutánea", price:570, cat:"Citologías"},
+    {id:401, name:"Citología Vaginal", price:760, cat:"Citologías"},
+    {id:402, name:"Citología Fecal", price:570, cat:"Citologías"},
+    {id:403, name:"PAAF", price:950, cat:"Citologías"},
+    {id:404, name:"Improntas", price:950, cat:"Citologías"},
+    {id:405, name:"Sonda Draminski", price:760, cat:"Citologías"},
+
+        // --- DERMATOLOGÍA ---
+    {id:406, name:"Raspado de Piel", price:270, cat:"Dermatología"},
+    {id:407, name:"Tricograma", price:270, cat:"Dermatología"},
+    {id:408, name:"Fluorescencia de Wood", price:270, cat:"Dermatología"},
+
+        // --- COMBOS ---
+    {id:409, name:"Combo Reproductivo 1", price:3020, cat:"Combos"},
+    {id:410, name:"Combo Reproductivo 2", price:3400, cat:"Combos"},
+    {id:411, name:"Combo Reproductivo Macho", price:2270, cat:"Combos"},
+    {id:412, name:"Combo Canino", price:1890, cat:"Combos"},
+    {id:413, name:"Combo Dermatológico", price:1510, cat:"Combos"},
+    {id:414, name:"Combo Felino 1", price:1400, cat:"Combos"}, 
+    {id:415, name:"Combo Felino 2", price:1890, cat:"Combos"},
+    {id:416, name:"Combo Felino 3", price:1700, cat:"Combos"},
+    {id:417, name:"QC CLIP - Bioquímica Sanguínea", price:2270, cat:"Combos"},
+    {id:418, name:"CHEM 17 CLIP - Bioquímica Sanguínea", price:3600, cat:"Combos"},
+    {id:419, name:"LYTE 4 CLIP - Iogramas", price:2270, cat:"Combos"},
+    {id:420, name:"CHEM 15 CLIP - Bioquímica Sanguínea", price:3400, cat:"Combos"},
+    {id:421, name:"CHEM 10 CLIP - Bioquímica Sanguínea", price:3020, cat:"Combos"},
+    {id:422, name:"NSAID 6 CLIP - Bioquímica Sanguínea", price:2270, cat:"Combos"},
+    {id:423, name:"URINE P:C RATIO", price:1320, cat:"Combos"},
+    {id:424, name:"EQUINE 15 CLIP - Bioquímica Sanguínea", price:3600, cat:"Combos"},
+
+        // --- PERFILES ---
+    {id:409, name:"Perfil Hepático", price:2080, cat:"Perfiles"},
+    {id:410, name:"Perfil Renal", price:3400, cat:"Perfiles"},
+    {id:411, name:"Perfil Tiroideo", price:2460, cat:"Perfiles"},
+    {id:412, name:"Perfil Preoperatorio-Canino", price:3020, cat:"Perfiles"}
+
+  ];
+
+  // Función para pintar por categorías (ESTILO ORIGINAL)
+  function renderCategorized() {
+    const grid = document.getElementById('servicesGrid');
+    if(!grid) return;
+    grid.innerHTML = ''; 
+
+    const categories = [...new Set(window.SERVICES.map(s => s.cat))];
+
+    categories.forEach(catName => {
+      // Título de Categoría: Usamos 'section-title' para mantener el estilo de la página principal
+      const header = document.createElement('div');
+      header.className = 'col-12 mt-4';
+      header.innerHTML = `<h3 class="section-title fs-5 text-dark border-bottom pb-2 mb-3" style="border-color:var(--brand-end)!important; width:fit-content;">${catName}</h3>`;
+      grid.appendChild(header);
+
+      const items = window.SERVICES.filter(s => s.cat === catName);
+
+      items.forEach(s => {
+        const realIdx = window.SERVICES.findIndex(x => x.id === s.id);
+        // Tarjeta con diseño idéntico al original
+        const col = document.createElement('div');
+        col.className = 'col-12 col-md-6 col-lg-4';
+        col.innerHTML = `
+          <div class="card h-100 shadow-sm">
+            <div class="card-body">
+              <h6 class="mb-1">${s.name}</h6>
+              <div class="d-flex justify-content-between align-items-center mt-2">
+                <span class="fw-semibold">${new Intl.NumberFormat('es-NI',{style:'currency',currency:'NIO'}).format(s.price)}</span>
+                <button class="btn btn-outline-brand btn-sm" data-idx="${realIdx}">
+                  <i class="bi bi-cart-plus"></i>
+                </button>
+              </div>
+            </div>
+          </div>`;
+        grid.appendChild(col);
+      });
+    });
+  }
+
+  // Inicialización y CORRECCIÓN DEL BUSCADOR
+  document.addEventListener('DOMContentLoaded', () => {
+    // 1. Cargar vista por categorías al inicio
+    renderCategorized();
+
+    // 2. Controlar el buscador para que regrese a categorías si se borra el texto
+    const searchInput = document.getElementById('searchServices');
+    if(searchInput){
+      searchInput.addEventListener('input', (e) => {
+        const val = e.target.value.trim();
+        // Si el buscador está vacío, forzamos la vista de categorías
+        if(val === ""){
+           renderCategorized();
+        }
+        // Nota: Si hay texto, services.js se encarga de filtrar (lista plana), lo cual es correcto.
+      });
+    }
+  });
+</script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="/js/services.js"></script>
 </body>
